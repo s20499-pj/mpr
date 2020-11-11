@@ -1,0 +1,13 @@
+### Emacs ###
+*~
+\#*\#
+.\#*
+
+### Intellij ###
+.idea/
+
+###Maven###
+.mvn/
+
+###Other###
+ngf/
