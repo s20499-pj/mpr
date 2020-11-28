@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import pl.pjatk.game.model.Player;
 import pl.pjatk.game.repository.PlayerRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,13 +20,17 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
-    public Optional<Player> findById(int id) {
-        List<Player> players = new ArrayList<>();
-        players.add(new Player(1, "Tank", 15, 5, 5));
-        players.add(new Player(2, "Mag", 10, 10, 5));
-        players.add(new Player(3, "DPS", 10, 5, 10));
+    public Optional<Player> findById(long id) {
+        return playerRepository.findById(id);
+    }
 
-        return players.stream().filter(player -> player.getId() == id).findFirst();
+    public void delete(long id){
+        playerRepository.deleteById(id);
+    }
+
+    public Player update(long id, Player playerWithUpdatedProperties){
+        playerWithUpdatedProperties.setId(id);
+        return playerRepository.save(playerWithUpdatedProperties);
     }
 
     public Player save(Player player){
